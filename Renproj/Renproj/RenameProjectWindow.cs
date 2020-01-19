@@ -1,4 +1,6 @@
-﻿namespace Renproj
+﻿using Renproj.Core;
+
+namespace Renproj
 {
     using System;
     using System.Runtime.InteropServices;
@@ -18,12 +20,14 @@
     [Guid("eed7595c-50db-48e9-8a0d-b8b5fe1fc591")]
     public class RenameProjectWindow : ToolWindowPane
     {
+        private readonly Rp _rp;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RenameProjectWindow"/> class.
         /// </summary>
         public RenameProjectWindow() : base(null)
         {
-            this.Caption = "RenameProjectWindow";
+            this.Caption = "Renproj - Rename Project";
 
             // This is the user control hosted by the tool window; Note that, even if this class implements IDisposable,
             // we are not calling Dispose on this object. This is because ToolWindowPane calls Dispose on

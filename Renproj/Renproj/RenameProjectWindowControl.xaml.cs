@@ -1,4 +1,6 @@
-﻿namespace Renproj
+﻿using Renproj.Core;
+
+namespace Renproj
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
@@ -9,12 +11,16 @@
     /// </summary>
     public partial class RenameProjectWindowControl : UserControl
     {
+        private readonly Rp _rp;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RenameProjectWindowControl"/> class.
         /// </summary>
         public RenameProjectWindowControl()
         {
             this.InitializeComponent();
+
+            _rp = new Rp(new ProjectService());
         }
 
         /// <summary>
@@ -26,6 +32,7 @@
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            _rp.Execute();
             MessageBox.Show(
                 string.Format(System.Globalization.CultureInfo.CurrentUICulture, "Invoked '{0}'", this.ToString()),
                 "RenameProjectWindow");
