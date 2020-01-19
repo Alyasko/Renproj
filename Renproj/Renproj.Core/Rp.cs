@@ -1,4 +1,5 @@
-﻿using Renproj.Core.Projects;
+﻿using System.Collections.Generic;
+using Renproj.Core.Projects;
 
 namespace Renproj.Core
 {
@@ -14,7 +15,12 @@ namespace Renproj.Core
 
         public void Execute()
         {
-            var projects = _solutionProjectService.GetProjects();
+
+        }
+
+        public IEnumerable<SolutionProject> GetProjects()
+        {
+            return _solutionProjectService.GetProjects();
         }
     }
 }

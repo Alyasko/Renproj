@@ -1,4 +1,7 @@
-﻿using Renproj.Core;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Renproj.Core;
+using Renproj.Core.Projects;
 
 namespace Renproj
 {
@@ -21,21 +24,20 @@ namespace Renproj
             this.InitializeComponent();
 
             _rp = new Rp(new ProjectService());
+
+            var allProjects = _rp.GetProjects();
+            Projects = new ObservableCollection<SolutionProject>(allProjects);
+            LvProjectsList.ItemsSource = Projects;
         }
 
-        /// <summary>
-        /// Handles click on the button by displaying a message box.
-        /// </summary>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event args.</param>
-        [SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "Sample code")]
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void LbProjectsList_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            _rp.Execute();
-            MessageBox.Show(
-                string.Format(System.Globalization.CultureInfo.CurrentUICulture, "Invoked '{0}'", this.ToString()),
-                "RenameProjectWindow");
+            if (!(LvProjectsList.SelectedItem is SolutionProject slnProj))
+                return;
+
+            MessageBox.Show(slnProj.Name);
         }
+
+        public ObservableCollection<SolutionProject> Projects { get; set; }
     }
 }
