@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="RenprojPackage.cs" />
     <Compile Include="Utils\SolutionUtils.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">
